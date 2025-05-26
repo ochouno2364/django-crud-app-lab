@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/home.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="logo-container">
+  <img
+    src="{% static 'images/lace.svg' %}"
+    alt="Text reads: SneakerHeads"
+  />
+  <h1>
+    Ofcourse your a SneakerHead, if not you wouldnt be here!
+  </h1>
+</section>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/sneakers/sneaker-index.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>Sneaker Shelf</h1>
+  <img
+    src="{% static 'images/nike.svg' %}"
+    alt="Nike Logo"
+  />
+  <img
+    src="{% static 'images/converse.svg' %}"
+    alt="Converse Logo"
+  />
+  <img
+    src="{% static 'images/jordan.svg' %}"
+    alt="Jordan Logo"
+  />
+  <img
+    src="{% static 'images/puma.svg' %}"
+    alt="Puma Logo"
+  />
+</section>
+
+<section class="card-container">
+  {% for sneaker in sneakers %}
+  <div class="card">
+    <div class="card-content">
+      <div class="card-img-container">
+        <img class="usr-img"
+          src="{% static 'images/shoehead.svg' %}"
+          alt="sneakerhead logo"
+        />
+      </div>
+      <h2 class="card-title">{{ sneaker.name }}</h2>
+      {% if sneaker.year > 0 %}
+      <p>The {{ sneaker.brand }} {{ sneaker.name }} were dropped in {{ sneaker.year }}</p>
+      {% else %}
+      <p>These {{ sneaker.name }} have not come out yet.</p>
+      {% endif %}
+      <p><small>{{ sneaker.description }}</small></p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
