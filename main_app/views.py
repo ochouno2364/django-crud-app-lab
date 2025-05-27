@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Sneaker 
+from .forms import ReleaseForm 
+
 
 
 
@@ -34,7 +36,10 @@ def sneaker_index(request):
 
 def sneaker_detail(request, sneaker_id):
     sneaker = Sneaker.objects.get(id=sneaker_id)
-    return render(request, 'sneakers/detail.html', {'sneaker': sneaker})
+    release_form = ReleaseForm()
+    return render(request, 'sneakers/detail.html', {
+        'sneaker': sneaker, 'release_form': release_form
+        })
 
 class SneakerCreate(CreateView):
     model = Sneaker
@@ -47,4 +52,14 @@ class SneakerUpdate(UpdateView):
 class SneakerDelete(DeleteView):
     model = Sneaker
     success_url = '/sneakers/'
+
+def add_release(request, sneaker_id):
+    form = ReleaseForm(request.POST)
+    if form.is_valid():
+       new_release = form.save(commit=False)
+       new_release.sneaker_id = sneaker_id
+       new_release.save()
+    return redirect('sneaker-detail', sneaker_id=sneaker_id)
+
+
     

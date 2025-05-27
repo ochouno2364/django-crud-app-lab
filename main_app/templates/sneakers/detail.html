@@ -29,5 +29,52 @@
         <a href="{% url 'sneaker-delete' sneaker.id %}" class="btn danger">Delete</a>
     </div>
   </div>
-</section>
+  
+<div class="sneaker-release-container">
+  <section class="releases">
+    <div class="subsection-title">
+      <h2>Releases</h2>
+      <img
+        src="{% static 'images/jordan.svg' %}"
+        alt="jordan"
+      />
+      <img src="{% static 'images/converse.svg' %}" alt="converse" />
+      <img
+        src="{% static 'images/nike.svg' %}"
+        alt="nike"
+      />
+    </div>
+    <h3>Add a Release</h3>
+<!-- Add just above the feedings table -->
+<form action="{% url 'add-release' sneaker.id %}"
+ method="POST" 
+ class="subsection-content" 
+ autocomplete="off">
+  {% csrf_token %} 
+  {{ release_form.as_p }}
+  <button type="submit" class="btn submit">Add Release</button>
+</form>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Brand</th>
+          <th>Store</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for release in sneaker.release_set.all %}
+          <tr>
+            <td>{{release.date}}</td>
+            <td>{{release.get_brand_display}}</td>
+            <td>{{release.store}}</td>
+            <td>{{release.price}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+
 {% endblock %}

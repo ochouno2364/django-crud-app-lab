@@ -28,7 +28,7 @@
   margin-top: 20px;
 }
 
-.feedings-toy-container {
+.sneaker-release-container {
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
@@ -45,7 +45,7 @@
   margin: 0 8px;
 }
 
-.toy-container {
+.release-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -98,7 +98,7 @@
   margin: 5px 0;
 }
 
-.feedings-toy-container > section {
+.sneaker-release-container > section {
   width: 80%;
   min-width: 360px;
   border: var(--borders);
@@ -166,16 +166,16 @@
   background-color: #f3f3fd;
 }
 
-.toy-container p {
+.release-container p {
   margin: 12px 0;
 }
 
-.toy-container a {
+.release-container a {
   text-decoration: none;
   color: #111;
 }
 
-.toy-container .btn {
+.release-container .btn {
   padding: 3px 10px;
   margin-left: 10px;
 }
@@ -206,19 +206,19 @@
     margin-right: 25px;
   }
 
-  .feedings-toy-container {
+  .sneaker-release-container {
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
   }
 
-  .feedings-toy-container > section {
+  .sneaker-release-container > section {
     width: 45%;
   }
 }
 
 @media only screen and (min-width: 1024px) {
-  .feedings-toy-container {
+  .sneaker-release-container {
     padding: 0 40px;
   }
 }
