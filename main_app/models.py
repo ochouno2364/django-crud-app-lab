@@ -16,6 +16,9 @@ class Sneaker(models.Model):
     year = models.IntegerField()
     size = models.IntegerField()
 
+    def get_absolute_url(self):
+        return reverse('sneaker-detail', kwargs={'sneaker_id': self.id})
+
 class Release(models.Model):
     date = models.DateField('Release date')
     store = models.CharField(max_length=50)

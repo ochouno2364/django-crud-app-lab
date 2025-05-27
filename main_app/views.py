@@ -60,6 +60,3 @@ def add_release(request, sneaker_id):
        new_release.sneaker_id = sneaker_id
        new_release.save()
     return redirect('sneaker-detail', sneaker_id=sneaker_id)
-
-
-    
