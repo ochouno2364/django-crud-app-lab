@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Sneaker 
+
+
 
 
 # Create your views here.
@@ -28,3 +31,20 @@ def about(request):
 def sneaker_index(request):
     sneakers = Sneaker.objects.all()
     return render(request, 'sneakers/sneakerindex.html', {'sneakers': sneakers})
+
+def sneaker_detail(request, sneaker_id):
+    sneaker = Sneaker.objects.get(id=sneaker_id)
+    return render(request, 'sneakers/detail.html', {'sneaker': sneaker})
+
+class SneakerCreate(CreateView):
+    model = Sneaker
+    fields = ['name', 'brand', 'description', 'year', 'size']
+
+class SneakerUpdate(UpdateView):
+    model = Sneaker
+    fields = ['brand', 'description', 'year', 'size']
+
+class SneakerDelete(DeleteView):
+    model = Sneaker
+    success_url = '/sneakers/'
+    

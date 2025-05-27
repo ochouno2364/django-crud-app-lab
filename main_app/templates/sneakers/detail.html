@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/sneakers/sneaker-detail.css' %}" />
+{% endblock %} 
+{% block content %}
+<section class="sneaker-container">
+  <div class="sneaker-img">
+    {% if sneaker.brand == 'Jordan' %}
+       <img src="{% static 'images/jordan.svg' %}" class="sneaker-images" alt="A skater boy cat" />
+    {% elif sneaker.brand == 'Puma' %}
+       <img src="{% static 'images/puma.svg' %}" class="sneaker-images" alt="A skater boy cat" />
+    {% elif sneaker.brand == 'Converse' %}
+       <img src="{% static 'images/converse.svg' %}" class="sneaker-images" alt="A skater boy cat" />
+    {% else %}
+       <img src="{% static 'images/nike.svg' %}" class="sneaker-images" alt="A skater boy cat" />
+    {% endif %}
+  </div>
+  <div class="sneaker-details">
+    <h1>{{ sneaker.name }}</h1>
+    {% if sneaker.year > 0 %}
+      <h2>The {{ sneaker.brand }} {{ sneaker.name }} dropped in {{ sneaker.year }}</h2>
+    {% else %}
+      <h2>A {{ sneaker.name }} has not ddropped yet.</h2>
+    {% endif %}
+    <p>{{ sneaker.description }}</p>
+    <div class="sneaker-actions">
+        <a href="{% url 'sneaker-update' sneaker.id %}" class="btn warn">Edit</a>
+        <a href="{% url 'sneaker-delete' sneaker.id %}" class="btn danger">Delete</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

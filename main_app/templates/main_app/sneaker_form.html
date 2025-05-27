@@ -1,0 +1,34 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %} 
+{% block content %}
+
+<div class="page-header">
+  {% if sneaker %}
+     <h1>Edit {{ sneaker.name }}</h1>
+  {% else %}
+     <h1>Add Sneaker</h1>
+  {% endif %}
+  
+    {% if sneaker.brand == 'Jordan' %}
+       <img src="{% static 'images/jordan.svg' %}" class="sneaker-images" alt="A skater boy cat" />
+    {% elif sneaker.brand == 'Puma' %}
+       <img src="{% static 'images/puma.svg' %}" class="sneaker-images" alt="A skater boy cat" />
+    {% elif sneaker.brand == 'Converse' %}
+       <img src="{% static 'images/converse.svg' %}" class="sneaker-images" alt="A skater boy cat" />
+    {% else %}
+       <img src="{% static 'images/nike.svg' %}" class="sneaker-images" alt="A skater boy cat" />
+    {% endif %}
+</div>
+
+<form action="" method="post" class="form-container">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <button type="submit" class="btn submit">Submit!</button>
+</form>
+
+{% endblock %}
