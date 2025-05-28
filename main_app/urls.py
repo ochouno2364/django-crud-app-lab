@@ -14,4 +14,5 @@ urlpatterns = [
         views.add_release,
         name='add-release'
     ),
+    path('accounts/signup/', views.signup, name='signup'),
 ]

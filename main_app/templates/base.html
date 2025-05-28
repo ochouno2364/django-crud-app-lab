@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/sneakerheads.svg'%}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/sneakerheads.svg' %}" />
     <title>SneakerHeads</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block head %} 
@@ -15,17 +15,30 @@
     <header>
       <div class="header-logo-container">
         <a href="/">
-          <img src="{% static 'images/sneakerheads.svg'%}" alt="The SneakerHead Logo" />
+          <img src="{% static 'images/sneakerheads.svg' %}" alt="The SneakerHead Logo" />
         </a>
       </div>
       <nav>
         <ul>
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'sneaker-index' %}">Sneakers</a></li>
-          <li><a href="{% url 'sneaker-create' %}">Add Sneakers</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
+           <li><a href="{% url 'home' %}">Home</a></li>
+           <li><a href="{% url 'sneaker-index' %}">All Sneakers</a></li>
+           <li><a href="{% url 'sneaker-create' %}">Add Sneaker</a></li>
+           <li><a href="{% url 'about' %}">About</a></li>
+           <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Log Out</button>
+            </form>
+           </li>
+          {% else %}
+           <li><a href="{% url 'signup' %}">Sign Up</a></li>
+           <li><a href="{% url 'home' %}">Login</a></li>
+           <li><a href="{% url 'about' %}">About</a></li>
+          {% endif %}
         </ul>
       </nav>
+
     </header>
     <main>
      {% block content %} 
@@ -33,3 +46,4 @@
      </main>
   </body>
 </html>
+
